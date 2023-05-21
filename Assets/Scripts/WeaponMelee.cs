@@ -14,7 +14,7 @@ public class WeaponMelee : MonoBehaviour
 
     private void Start()
     {
-        _point = this.gameObject.GetComponentInChildren<Rigidbody>();
+        _point = gameObject.GetComponentInChildren<Rigidbody>();
     }
 
     private void FixedUpdate()

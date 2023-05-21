@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     public void Start()
     {
         CanBeAttacked = true;
-        _thisEnemy = this.gameObject;
+        _thisEnemy = gameObject;
     }
     public void Update()
     {
@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
         _enemyAnimator.IsDead(true);
         _thisEnemy.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         _thisEnemy.GetComponent<EnemyAttack>()._damage = 0;
+        _thisEnemy.GetComponent<MeshCollider>().enabled = false;
         Vector3 position = _thisEnemy.transform.position;
         position = new Vector3(position.x,0.5f,position.z);
         _thisEnemy.transform.position = position;
