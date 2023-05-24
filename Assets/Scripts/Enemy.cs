@@ -9,11 +9,14 @@ using Unity.VisualScripting;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _health;
-    private float _healthMax = 100f;
+    [SerializeField] private int _givenExperirence;
     [SerializeField] private Image _healthBar;
     [SerializeField] private Image _addHealthBar;
     [SerializeField] private EnemyAnimator _enemyAnimator;
+    [SerializeField] private GameObject _expSphere;
+    private float _healthMax = 100f;
     private GameObject _thisEnemy;
+    private Player _player;
     private float _timer;
     public bool CanBeAttacked { get; private set;}
     
@@ -22,6 +25,7 @@ public class Enemy : MonoBehaviour
     
     public void Start()
     {
+        _player = FindObjectOfType<Player>();
         CanBeAttacked = true;
         _thisEnemy = gameObject;
     }
@@ -54,6 +58,9 @@ public class Enemy : MonoBehaviour
     private void EnemyDeath()
     {
         _enemyAnimator.IsDead(true);
+        _enemyAnimator.IsWalking(false);
+        _enemyAnimator.IsRunning(false);
+        _player._experience += _givenExperirence;
         _thisEnemy.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         _thisEnemy.GetComponent<EnemyAttack>()._damage = 0;
         _thisEnemy.GetComponent<MeshCollider>().enabled = false;
@@ -64,6 +71,8 @@ public class Enemy : MonoBehaviour
         _thisEnemy.GetComponentInChildren<Canvas>().enabled = false;
         StartCoroutine(Meow());
         _thisEnemy.GetComponent<Rigidbody>().isKinematic = true;
+        ExpSphere(position);
+        
     }
 
     //dsdsdsdsdsdsdsdsgsa[gqg[2qrglp2rrplgh,[lrph
@@ -92,6 +101,13 @@ public class Enemy : MonoBehaviour
         CanBeAttacked = true;
         _timer = 0;
     }
-    
-    
+
+    private void ExpSphere(Vector3 pos)
+    {
+        pos.y = 1.5f;
+        Instantiate(_expSphere, pos, _thisEnemy.transform.rotation);
+        
+    }
+
+
 }

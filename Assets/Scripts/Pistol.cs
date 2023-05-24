@@ -23,6 +23,14 @@ public class Pistol : MonoBehaviour
     {
         _socketInteractor = gameObject.transform.Find("Magazine").GetComponent<XRSocketInteractor>();
         CheckGunClip();
+        /*InteractionLayerMask x = _socketInteractor.interactionLayers.value;
+        _socketInteractor.interactionLayers.value -= 1;
+        print(x - 1);
+        print(InteractionLayerMask.LayerToName(_socketInteractor.interactionLayers.value-10));
+        print(InteractionLayerMask.NameToLayer("Default"));
+        print(InteractionLayerMask.NameToLayer("Weapon"));
+        print(InteractionLayerMask.NameToLayer("Pistol Clip"));
+        print(InteractionLayerMask.LayerToName(4));*/
     }
     
     public void CheckGunClip()
@@ -50,7 +58,7 @@ public class Pistol : MonoBehaviour
             }
             _newBullet = Instantiate(bullet, bulletspawn1.position, bulletspawn1.rotation);
             _newBullet.GetComponent<Rigidbody>().velocity = bulletspeed * bulletspawn2.forward;
-            Destroy(_newBullet,2);
+            Destroy(_newBullet,3f);
         }
     }
 

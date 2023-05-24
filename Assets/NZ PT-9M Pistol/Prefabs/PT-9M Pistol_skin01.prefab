@@ -680,6 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7121811263639623414}
   - component: {fileID: 1212082605861267158}
+  - component: {fileID: 4868580188554086946}
   - component: {fileID: 1905472981671110448}
   m_Layer: 0
   m_Name: Magazine
@@ -759,6 +760,19 @@ MonoBehaviour:
   m_SocketActive: 1
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
+--- !u!114 &4868580188554086946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608118435770702443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebf4c3da7eb57e47b43524a963eae69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _socketInteractor: {fileID: 1212082605861267158}
 --- !u!135 &1905472981671110448
 SphereCollider:
   m_ObjectHideFlags: 0

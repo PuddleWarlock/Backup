@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    [SerializeField] public int _health;
+    [SerializeField] public int _experience = 0;
+    public int _enemiesKilled;
+    public int _playerLvl = 1;
 
     public void TakeDamage(int damage)
     {
-        if (_health - damage <=  0) 
-        {
-            Debug.Log("Died");
-        }
-
         _health -= damage;
+        if (_health <=  0)
+        {
+            _health = 0;
+            print("Died");
+        }
     }
 }

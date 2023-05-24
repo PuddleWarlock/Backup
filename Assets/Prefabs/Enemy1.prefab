@@ -206,9 +206,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
+  _givenExperirence: 50
   _healthBar: {fileID: 7731592089414394322}
   _addHealthBar: {fileID: 9053381685992134012}
   _enemyAnimator: {fileID: 1588887336691683927}
+  _expSphere: {fileID: 6023509708046283844, guid: 496c9ec48061f75449c2a19dc2f73719, type: 3}
   _cooldownAttack: 0.5
 --- !u!114 &3541159671057901046
 MonoBehaviour:
@@ -257,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38f13468916ee44c9dd0b8169bff51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 1
+  _attackRange: 2
   _damage: 5
   _cooldownAttack: 5
 --- !u!114 &3310621022080657798
