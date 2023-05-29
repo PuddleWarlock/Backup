@@ -34,7 +34,4 @@ public class EnemyAnimator : MonoBehaviour
     {
         _animator.SetBool(Death, condition);
     }
-
-
-
 }

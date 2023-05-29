@@ -9,8 +9,6 @@ using Update = UnityEngine.PlayerLoop.Update;
 public class InstantToVelocity : MonoBehaviour
 {
     private float _timer;
-    // Update is called once per frame
-    
     private void OnCollisionEnter(Collision collision)
     {
         GetComponent<XRGrabInteractable>().movementType = XRBaseInteractable.MovementType.VelocityTracking;

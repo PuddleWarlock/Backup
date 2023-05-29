@@ -230,7 +230,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1697669114025427276}
         m_TargetAssemblyTypeName: Spherecontroller, Assembly-CSharp
-        m_MethodName: Health
+        m_MethodName: GetHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -332,4 +332,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 5
+  _effect: {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   _healhamount: 20

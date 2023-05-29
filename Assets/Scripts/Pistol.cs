@@ -6,7 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Pistol : MonoBehaviour
 {
-    
     [Header("Shooting")]
     [SerializeField] public GameObject bullet;
     [SerializeField] public Transform bulletspawn1;
@@ -23,14 +22,6 @@ public class Pistol : MonoBehaviour
     {
         _socketInteractor = gameObject.transform.Find("Magazine").GetComponent<XRSocketInteractor>();
         CheckGunClip();
-        /*InteractionLayerMask x = _socketInteractor.interactionLayers.value;
-        _socketInteractor.interactionLayers.value -= 1;
-        print(x - 1);
-        print(InteractionLayerMask.LayerToName(_socketInteractor.interactionLayers.value-10));
-        print(InteractionLayerMask.NameToLayer("Default"));
-        print(InteractionLayerMask.NameToLayer("Weapon"));
-        print(InteractionLayerMask.NameToLayer("Pistol Clip"));
-        print(InteractionLayerMask.LayerToName(4));*/
     }
     
     public void CheckGunClip()

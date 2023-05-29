@@ -21,10 +21,12 @@ public class Enemy : MonoBehaviour
     public bool CanBeAttacked { get; private set;}
     
     [SerializeField] private float _cooldownAttack;
+    private EnemySpawner _enemySpawner;
 
-    
+
     public void Start()
     {
+        _enemySpawner = FindObjectOfType<EnemySpawner>();
         _player = FindObjectOfType<Player>();
         CanBeAttacked = true;
         _thisEnemy = gameObject;
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
         if (_health - damage <=  0)
         {
             EnemyDeath();
+            _enemySpawner.counter--;
         }
         if (CanBeAttacked)
         {
@@ -74,13 +77,11 @@ public class Enemy : MonoBehaviour
         ExpSphere(position);
         
     }
-
-    //dsdsdsdsdsdsdsdsgsa[gqg[2qrglp2rrplgh,[lrph
     IEnumerator Meow()
     {
        yield return new WaitForSeconds(5);
        Destroy(_thisEnemy);
-       FindObjectOfType<EnemySpawner>().counter--;
+       
        
     }
 
@@ -108,6 +109,4 @@ public class Enemy : MonoBehaviour
         Instantiate(_expSphere, pos, _thisEnemy.transform.rotation);
         
     }
-
-
 }
