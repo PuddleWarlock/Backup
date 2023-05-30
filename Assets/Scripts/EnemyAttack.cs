@@ -8,6 +8,8 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float _attackRange;
     [SerializeField] public int _damage;
     [SerializeField] private float _cooldownAttack;
+    private AudioSource _attacksound;
+    [SerializeField] private AudioClip _attack;
 
     private float _timer;
     public bool CanAttack { get; private set;}
@@ -19,6 +21,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
+        _attacksound = GetComponent<AudioSource>();
         _player = FindObjectOfType<Player>();
     }
 
@@ -29,6 +32,8 @@ public class EnemyAttack : MonoBehaviour
 
     public void TryAttackPlayer()
     {
+        _attacksound.clip = _attack;
+        _attacksound.Play();
         _player.TakeDamage(_damage);
         CanAttack = false;
     }

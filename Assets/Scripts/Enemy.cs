@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     private GameObject _thisEnemy;
     private Player _player;
     private float _timer;
+    private AudioSource _deathsound;
+    [SerializeField] private AudioClip _goofyahhdeath;
     public bool CanBeAttacked { get; private set;}
     
     [SerializeField] private float _cooldownAttack;
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
         _player = FindObjectOfType<Player>();
         CanBeAttacked = true;
         _thisEnemy = gameObject;
+        _deathsound = GetComponent<AudioSource>();
     }
     public void Update()
     {
@@ -79,8 +82,10 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator Meow()
     {
-       yield return new WaitForSeconds(5);
-       Destroy(_thisEnemy);
+        _deathsound.clip = _goofyahhdeath;
+        _deathsound.Play();
+        yield return new WaitForSeconds(5);
+        Destroy(_thisEnemy);
        
        
     }

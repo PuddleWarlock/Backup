@@ -16,11 +16,15 @@ public class Pistol : MonoBehaviour
     private IXRSelectInteractable gunClip;
     private bool _hasGunClip;
     private GunClip _GunClip;
-
+    private AudioSource _shootsound;
+    [SerializeField] private AudioClip _shoot;
+    [SerializeField] private AudioClip _noammo;
+    
 
     private void Start()
     {
         _socketInteractor = gameObject.transform.Find("Magazine").GetComponent<XRSocketInteractor>();
+        _shootsound = GetComponent<AudioSource>();
         CheckGunClip();
     }
     
@@ -40,16 +44,25 @@ public class Pistol : MonoBehaviour
 
     public void Shoot()
     {
-        if (_hasGunClip && _GunClip.ammoCount != 0)
+        if (_hasGunClip)
         {
-            _GunClip.ammoCount--;
-            if (_GunClip.ammoCount >= 0)
+            if (_GunClip.ammoCount == 0)
             {
+                _shootsound.clip = _noammo;
+                _shootsound.Play();
+                return;
+            }
+            if (_GunClip.ammoCount > 0)
+            {
+                _GunClip.ammoCount--;
+                _shootsound.clip = _shoot;
+                _shootsound.Play();
+                _newBullet = Instantiate(bullet, bulletspawn1.position, bulletspawn1.rotation);
+                _newBullet.GetComponent<Rigidbody>().velocity = bulletspeed * bulletspawn2.forward;
+                Destroy(_newBullet,3f);
                 RoundRemove();
             }
-            _newBullet = Instantiate(bullet, bulletspawn1.position, bulletspawn1.rotation);
-            _newBullet.GetComponent<Rigidbody>().velocity = bulletspeed * bulletspawn2.forward;
-            Destroy(_newBullet,3f);
+            
         }
     }
 

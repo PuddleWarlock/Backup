@@ -11,10 +11,15 @@ public class Player : MonoBehaviour
     public int _enemiesKilled;
     public int _playerLvl = 1;
     private WristHealth _wristHealth;
+    private GameObject resultscreen;
+    [SerializeField] public Material win;
+    [SerializeField] public  Material lose;
 
     private void Start()
     {
         _wristHealth = FindObjectOfType<WristHealth>();
+        resultscreen = GameObject.Find("ResultScreen");
+        resultscreen.SetActive(false);
     }
 
     public void TakeDamage(int damage)
@@ -23,7 +28,10 @@ public class Player : MonoBehaviour
         if (_health <=  0)
         {
             _health = 0;
-            print("Died");
+            Time.timeScale = 0;
+            gameObject.transform.position = new Vector3(0, gameObject.transform.position.y, 0);
+            RenderSettings.skybox = lose;
+            resultscreen.SetActive(true);
         }
         _wristHealth.StatUpdate();
     }
@@ -32,6 +40,7 @@ public class Player : MonoBehaviour
         if (_health + _healhamount > _maxhealth)
         {
             _health = _maxhealth;
+            
         }
         else
         {
