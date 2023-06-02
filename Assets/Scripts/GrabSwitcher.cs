@@ -12,15 +12,10 @@ public class GrabSwitcher : MonoBehaviour
     //private HTCViveControllerProfile.ViveController HR = new HTCViveControllerProfile.ViveController();
     private float _timer;
 
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
         Switch();
-        
     }
 
     private void Switch()
@@ -28,7 +23,7 @@ public class GrabSwitcher : MonoBehaviour
         if (_controller.selectAction.action.phase == InputActionPhase.Performed)
         {
             _timer += Time.deltaTime;
-            if (_timer > 0.2f)
+            if (_timer > 0.3f)
             {
                 _xrRayInteractor.selectActionTrigger = XRBaseControllerInteractor.InputTriggerType.StateChange;
             }

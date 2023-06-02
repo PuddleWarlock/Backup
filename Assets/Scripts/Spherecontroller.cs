@@ -19,6 +19,7 @@ public class Spherecontroller : MonoBehaviour
     private EffectsController _effectsController;
     private bool grabed = false;
     private Player _player;
+    [SerializeField] private int _exp;
     private float timer = 0;
     private string currenthand;
     private ActionBasedController actualhand;
@@ -37,8 +38,6 @@ public class Spherecontroller : MonoBehaviour
     void Update()
     {
         DestroySphere();
-        GetExp();
-       
     }
 
     private void DestroySphere()
@@ -49,6 +48,7 @@ public class Spherecontroller : MonoBehaviour
         }
         if (grabed == false && timer>_timeToDestroy)
         {
+            _player.GetExp(_exp);
             Destroy(gameObject);
         }
     }
@@ -71,14 +71,14 @@ public class Spherecontroller : MonoBehaviour
         var _grab = gameObject.GetComponent<XRGrabInteractable>();
         if (arg.interactorObject.transform.name == "LeftHand Controller")
         {
-            actualhand = arg.interactorObject.transform.GetComponent<ActionBasedController>();
-            currenthand = arg.interactorObject.transform.name;
+            /*actualhand = arg.interactorObject.transform.GetComponent<ActionBasedController>();
+            currenthand = arg.interactorObject.transform.name;*/
             _grab.attachTransform = _leftAttach;
         }
         else if (arg.interactorObject.transform.name == "RightHand Controller")
         {
-            actualhand = arg.interactorObject.transform.GetComponent<ActionBasedController>();
-            currenthand = arg.interactorObject.transform.name;
+            /*actualhand = arg.interactorObject.transform.GetComponent<ActionBasedController>();
+            currenthand = arg.interactorObject.transform.name;*/
             _grab.attachTransform = _rightAttach;
         }
         
@@ -92,7 +92,7 @@ public class Spherecontroller : MonoBehaviour
         Destroy(gameObject);
     }
     
-    public void GetExp()
+    /*public void GetExp()
     {
         if (currenthand == "LeftHand Controller")
         {   
@@ -108,7 +108,6 @@ public class Spherecontroller : MonoBehaviour
                 print("meowRIGHT");
             }
         }
-        
-    }
+    }*/
     
 }

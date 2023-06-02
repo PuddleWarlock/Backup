@@ -7,13 +7,16 @@ public class SpawnOfWaves: MonoBehaviour
 {
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private int _maxWaveCount;
+    [SerializeField] private int _winWave;
     public int _waveNum = 1;
     private EndWaveText _endWaveText;
     private int _enemyIncrement = 1;
     public int _maxWaveCounter = 0;
+    private Player _player;
 
     private void Start()
     {
+        _player = FindObjectOfType<Player>();
         _endWaveText = FindObjectOfType<EndWaveText>();
     }
 
@@ -23,6 +26,11 @@ public class SpawnOfWaves: MonoBehaviour
         if (_maxWaveCounter == _maxWaveCount && _enemySpawner.counter == 0)
         {
             _endWaveText.ShowEndText();
+            if (_waveNum == _winWave)
+            {
+                _player.EndGame(true);
+                return;
+            }
             _waveNum++;
             StartCoroutine(Stop());
             _enemySpawner.counter = -1;

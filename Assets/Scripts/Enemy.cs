@@ -14,16 +14,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Image _addHealthBar;
     [SerializeField] private EnemyAnimator _enemyAnimator;
     [SerializeField] private GameObject _expSphere;
+    [SerializeField] private AudioClip _goofyahhdeath;
+    [SerializeField] private float _cooldownAttack;
     private float _healthMax = 100f;
     private GameObject _thisEnemy;
     private Player _player;
+    private bool isDead = false;
     private float _timer;
     private AudioSource _deathsound;
-    [SerializeField] private AudioClip _goofyahhdeath;
-    public bool CanBeAttacked { get; private set;}
-    
-    [SerializeField] private float _cooldownAttack;
     private EnemySpawner _enemySpawner;
+    public bool CanBeAttacked { get; private set;}
 
 
     public void Start()
@@ -41,10 +41,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (_health - damage <=  0)
+        if (_health - damage <=  0 && !isDead)
         {
+            isDead = true;
             EnemyDeath();
             _enemySpawner.counter--;
+            _player._enemiesKilled++;
         }
         if (CanBeAttacked)
         {
@@ -56,9 +58,12 @@ public class Enemy : MonoBehaviour
 
     private void HealthBarUpdate()
     {
-        _healthBar.fillAmount = _health / _healthMax;
-        float duration = 0.75f;
-        _addHealthBar.DOFillAmount( _health / _healthMax, duration);
+        if(_healthBar != null)
+        {
+            _healthBar.fillAmount = _health / _healthMax;
+            float duration = 0.75f;
+            _addHealthBar.DOFillAmount(_health / _healthMax, duration);
+        }
     }
 
     private void EnemyDeath()
@@ -66,8 +71,8 @@ public class Enemy : MonoBehaviour
         _enemyAnimator.IsDead(true);
         _enemyAnimator.IsWalking(false);
         _enemyAnimator.IsRunning(false);
-        _player._experience += _givenExperirence;
-        _thisEnemy.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        _player.GetExp(_givenExperirence);
+        _thisEnemy.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         _thisEnemy.GetComponent<EnemyAttack>()._damage = 0;
         _thisEnemy.GetComponent<MeshCollider>().enabled = false;
         Vector3 position = _thisEnemy.transform.position;
@@ -86,8 +91,6 @@ public class Enemy : MonoBehaviour
         _deathsound.Play();
         yield return new WaitForSeconds(5);
         Destroy(_thisEnemy);
-       
-       
     }
 
     private void UpdateCoolDown()
@@ -96,14 +99,11 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-
         _timer += Time.deltaTime;
-
         if (_timer <_cooldownAttack) 
         {
             return;
         }
-
         CanBeAttacked = true;
         _timer = 0;
     }
@@ -112,6 +112,5 @@ public class Enemy : MonoBehaviour
     {
         pos.y = 1.5f;
         Instantiate(_expSphere, pos, _thisEnemy.transform.rotation);
-        
     }
 }
