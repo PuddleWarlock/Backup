@@ -72,7 +72,6 @@ public class EnemyAI : MonoBehaviour
 
                     if (_enemyAttack.CanAttack)
                     {
-                        
                         _enemyAnimator.PlayAttack();
                     }
                 }
