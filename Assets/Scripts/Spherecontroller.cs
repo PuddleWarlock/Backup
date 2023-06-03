@@ -5,12 +5,14 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
+using Object = UnityEngine.Object;
 
 public class Spherecontroller : MonoBehaviour
 {
     [SerializeField] private int _timeToDestroy;
-    [SerializeField] private ParticleSystem _effect;
+    private ParticleSystem _effect;
     [SerializeField] private int _healhamount;
     [SerializeField] private Transform _leftAttach;
     [SerializeField] private Transform _rightAttach;

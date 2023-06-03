@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - Pistol
   - Bullet
+  - Floor
+  - StartGame
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - Gun Clip
   - Hands
   - Floor
-  - 
+  - AmmoBag
   - 
   - 
   - 

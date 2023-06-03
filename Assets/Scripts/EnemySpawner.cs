@@ -4,35 +4,33 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-
-
     [SerializeField] public GameObject _enemyPrefab;
+    /*[SerializeField] public GameObject _enemyPrefab2;
+    [SerializeField] public GameObject _enemyPrefab3;
+    [SerializeField] public GameObject _enemyPrefab4;*/
     [SerializeField] public float _spawnInterval;
-
     [SerializeField] public int _minX;
     [SerializeField] public int _maxX;
-
     [SerializeField] public int _minY;
     [SerializeField] public int _maxY;
-
     [SerializeField] public float _height;
-    
     [SerializeField] public int _maxspawn;
-
     private SpawnOfWaves _spawnOfWaves;
-
+    private Data _data;
+    //private GameObject enemyInstance;
     private float _currentSpawnTimer;
     public int counter = 0;
     private SpawnOfWaves _spawnOfWaves1;
 
     private void Start()
     {
-        _spawnOfWaves1 = FindObjectOfType<SpawnOfWaves>();
+        /*_data = FindObjectOfType<Data>();*/
+        /*_spawnOfWaves1 = FindObjectOfType<SpawnOfWaves>();*/
+        _spawnOfWaves = FindObjectOfType<SpawnOfWaves>();
     }
 
     private void Update()
     {
-        _spawnOfWaves = _spawnOfWaves1;
         _currentSpawnTimer += Time.deltaTime;
     }
 
@@ -48,7 +46,22 @@ public class EnemySpawner : MonoBehaviour
         if(_currentSpawnTimer >= _spawnInterval)
         {
             if(counter < _maxspawn) 
-            { 
+            {
+                /*switch (_data._dName)
+                {
+                    case "Easy":
+                        enemyInstance = Instantiate(_enemyPrefab);
+                        break;
+                    case "Medium":
+                        enemyInstance = Instantiate(_enemyPrefab2);
+                        break;
+                    case "Hard":
+                        enemyInstance = Instantiate(_enemyPrefab3);
+                        break;
+                    case "Insane":
+                        enemyInstance = Instantiate(_enemyPrefab4);
+                        break;
+                }*/
                 var enemyInstance = Instantiate(_enemyPrefab);
                 counter += 1;
                 var newPosition = GenerateStartPosition();

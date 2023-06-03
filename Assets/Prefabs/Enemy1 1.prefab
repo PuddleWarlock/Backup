@@ -668,8 +668,10 @@ MonoBehaviour:
   _addHealthBar: {fileID: 9053381685992134012}
   _enemyAnimator: {fileID: 1588887336691683927}
   _expSphere: {fileID: 6023509708046283844, guid: 496c9ec48061f75449c2a19dc2f73719, type: 3}
+  _ammo: {fileID: 3977075430750232519, guid: 6f28ca8dadf072a4fb69eff9cbf2a3f9, type: 3}
   _goofyahhdeath: {fileID: 8300000, guid: b72efbbdf31c7b34eb2bb3c6fcd8f9aa, type: 3}
   _cooldownAttack: 0.5
+  _healthMax: 100
 --- !u!114 &3541159671057901046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +694,7 @@ MonoBehaviour:
   _aiDestinationSetter: {fileID: 5950698218295888778}
   _enemyAnimator: {fileID: 1588887336691683927}
   _aiPath: {fileID: 736626272259056360}
+  _currentState: 0
 --- !u!114 &1588887336691683927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRange: 2
-  _damage: 50
+  _damage: 10
   _cooldownAttack: 5
   _attack: {fileID: 8300000, guid: b955dc5c570bf874b928ae2140f11d54, type: 3}
 --- !u!114 &3310621022080657798
@@ -825,7 +828,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b955dc5c570bf874b928ae2140f11d54, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0

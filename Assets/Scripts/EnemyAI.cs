@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
 
     private Player _player;
 
-    private EnemyStates _currentState;
+    public EnemyStates _currentState;
     private Vector3 _roamPosition;
 
     private void Start()
@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour
                 _enemyAnimator.IsRunning(false);
 
                 _aiPath.maxSpeed = 1;
-
+                
                 break;
 
             case EnemyStates.Following:
@@ -82,6 +82,18 @@ public class EnemyAI : MonoBehaviour
                     _currentState = EnemyStates.Roaming;
                 }
 
+                break;
+                case EnemyStates.Death: 
+                    
+                _enemyAnimator.IsWalking(false);
+                _enemyAnimator.IsRunning(false);
+                _enemyAnimator.IsDead(true);
+                _aiPath.maxSpeed = 0;
+                GetComponent<Seeker>().enabled = false;
+                GetComponent<AIPath>().enabled = false;
+                GetComponent<AIDestinationSetter>().enabled = false;
+                
+                
                 break;
         }
 
@@ -117,7 +129,8 @@ public class EnemyAI : MonoBehaviour
     public enum EnemyStates
     {
         Roaming,
-        Following
+        Following,
+        Death
     }
 
 }

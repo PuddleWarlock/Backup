@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 5
-  _effect: {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  _healEffect: {fileID: 2446226544868965393, guid: a3e526a384772a349a033f319b867662, type: 3}
   _healhamount: 20
   _leftAttach: {fileID: 5494438032144998201}
   _rightAttach: {fileID: 2634486767664371838}

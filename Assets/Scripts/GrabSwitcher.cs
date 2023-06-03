@@ -9,6 +9,8 @@ public class GrabSwitcher : MonoBehaviour
 {
     [SerializeField] private XRRayInteractor _xrRayInteractor;
     [SerializeField] private ActionBasedController _controller;
+    [SerializeField] private AnimationClip _anim;
+    
     //private HTCViveControllerProfile.ViveController HR = new HTCViveControllerProfile.ViveController();
     private float _timer;
 
@@ -26,10 +28,13 @@ public class GrabSwitcher : MonoBehaviour
             if (_timer > 0.3f)
             {
                 _xrRayInteractor.selectActionTrigger = XRBaseControllerInteractor.InputTriggerType.StateChange;
+                
+                
             }
             else
             {
                 _xrRayInteractor.selectActionTrigger = XRBaseControllerInteractor.InputTriggerType.Sticky;
+                
             }
         }
         else

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,7 +23,7 @@ public class MenuManager : MonoBehaviour
     public void BtnHovered()
     {
         transform.parent.GetComponent<TextMeshPro>().color = Color.yellow;
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
     }
     public void BtnNotHovered()
     {
@@ -31,8 +32,10 @@ public class MenuManager : MonoBehaviour
     
     public void Back2Menu()
     {   
+        
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        FindObjectOfType<Player>().transform.rotation = Quaternion.LookRotation(new Vector3(0,0,1));
     }
 
     public void SwapHover(HoverEnterEventArgs meow)

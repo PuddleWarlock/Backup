@@ -6,4 +6,5 @@ public class EffectsController : MonoBehaviour
 {
     [SerializeField] public ParticleSystem _bloodEffect;
     [SerializeField] public ParticleSystem _healEffect;
+    [SerializeField] public ParticleSystem _playerLvlUp;
 }

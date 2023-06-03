@@ -33,7 +33,7 @@ public class EnemyAttack : MonoBehaviour
     public void TryAttackPlayer()
     {
         _attacksound.clip = _attack;
-        _attacksound.Play();
+        _attacksound.PlayOneShot(_attacksound.clip);
         _player.TakeDamage(_damage);
         CanAttack = false;
     }
