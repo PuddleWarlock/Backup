@@ -1356,7 +1356,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 97be5ccbf5d7d39469d45234582c25b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4433,7 +4433,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 1648264839461717587}
+  _expBar: {fileID: 0}
   _healthPercent: {fileID: 66993121095145112}
+  _lvl: {fileID: 0}
 --- !u!114 &170163542343302433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6128,6 +6130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _experience: 0
+  _nextLvlTreshhold: 200
   win: {fileID: 0}
   lose: {fileID: 0}
   _leftController: {fileID: 0}
